@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - run: dotnet build
-      - run: dotnet test --logger "trx" --output "TestResults"
+      - run: dotnet test --logger "trx" --results-directory "TestResults"
       - run:
           name: test results
           when: always
