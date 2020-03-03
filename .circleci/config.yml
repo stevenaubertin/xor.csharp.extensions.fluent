@@ -18,6 +18,8 @@ jobs:
           command: |
               dotnet tool install -g trx2junit
               trx2junit TestResults/*.trx
+      - run: pwd
+      - run: ls TestResults/
       - store_test_results:
           path: TestResults
       - store_artifacts:
