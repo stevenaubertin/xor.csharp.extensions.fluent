@@ -10,19 +10,21 @@ jobs:
       name: windows/default
     steps:
       - checkout
+      - run: dotnet build
+      - run: dotnet test --no-build --logger "trx"
       - run:
-          name: "Install Project dependencies"
-          command: dotnet.exe restore
-      - run:
-          name: "Run Application Tests"
-          command: dotnet.exe test -v n --results-directory:test-results --collect:"Code Coverage"
-      - run:
-          name: "Print Working Directory"
-          command: pwd
-      - store_artifacts:
-          path: C:\Users\circleci\project\test-results
+          name: test results
+          when: always
+          command: |
+              dotnet tool install -g trx2junit
+              export PATH="$PATH:/root/.dotnet/tools"
+              trx2junit tests/**/TestResults/*.trx
       - store_test_results:
-          path: test-results
+          path: tests/TestResults
+      - store_artifacts:
+          path: tests/TestResults
+          destination: TestResults
+
   build:
     description: Build Application with Release configuration
     executor:
