@@ -21,6 +21,8 @@ jobs:
           command: pwd
       - store_artifacts:
           path: C:\Users\circleci\project\test_coverage
+      - store_test_results:
+          path: test-results
   build:
     description: Build Application with Release configuration
     executor:
@@ -30,6 +32,7 @@ jobs:
       - run:
           name: "Build Release"
           command: dotnet.exe build --configuration Release
+
 workflows:
   test_and_build:
     jobs:
