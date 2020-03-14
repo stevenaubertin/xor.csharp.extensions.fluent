@@ -33,6 +33,9 @@ jobs:
       - run:
           name: "Build Release"
           command: dotnet.exe build --configuration Release
+      - store_artifacts:
+          path: bin/Release/
+          destination: bin/Release/
 
   package:
     description: Package and publish the application with Release configuration
@@ -44,7 +47,10 @@ jobs:
          command: dotnet pack --configuration Release
       - run:
          name: "Publish"
-         command: dotnet nuget push "bin/Release/xor.csharp.extensions.fluent.1.0.0.nupkg" --source "github"
+         command: dotnet nuget push "bin/Release/xor.csharp.extensions.fluent.*.nupkg" --source "github"
+      - store_artifacts:
+          path: bin/Release/xor.csharp.extensions.fluent.*.nupkg
+          destination: nupkgs
 
 workflows:
   test_and_build:
