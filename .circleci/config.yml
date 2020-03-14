@@ -33,21 +33,19 @@ jobs:
       - run:
           name: "Build Release"
           command: dotnet.exe build --configuration Release --output bin/Release/
-      - store_artifacts:
-          path: bin/Release/
-          destination: bin/Release/
 
   package:
     description: Package and publish the application with Release configuration
     executor:
       name: windows/default
     steps:
-      - run:
-          name: "print env var"
-          command: echo $CIRCLE_PROJECT_REPONAME
+      - checkout
       - run:
          name: "Pack"
          command: dotnet pack --configuration Release
+      -run:
+         name: "show files"
+         command: tree
       - run:
          name: "Publish"
          command: dotnet nuget push "bin/Release/$CIRCLE_PROJECT_REPONAME.*.nupkg" --source "github"
