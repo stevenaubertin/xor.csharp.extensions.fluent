@@ -6,6 +6,7 @@
     <Authors>Steven Aubertin</Authors>
     <Company />
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <RepositoryUrl>https://github.com/stevenaubertin/xor.csharp.extensions.fluent</RepositoryUrl>
   </PropertyGroup>
 
 </Project>
