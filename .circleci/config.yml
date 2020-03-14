@@ -32,7 +32,7 @@ jobs:
       - checkout
       - run:
           name: "Build Release"
-          command: dotnet.exe build $CIRCLE_PROJECT_REPONAME/$CIRCLE_PROJECT_REPONAME.csproj --configuration Release --output bin/Release/
+          command: dotnet.exe build --configuration Release --output bin/Release/
       - store_artifacts:
           path: bin/Release/
           destination: bin/Release/
@@ -42,6 +42,9 @@ jobs:
     executor:
       name: windows/default
     steps:
+      - run:
+          name: "print env var"
+          command: echo $CIRCLE_PROJECT_REPONAME
       - run:
          name: "Pack"
          command: dotnet pack --configuration Release
