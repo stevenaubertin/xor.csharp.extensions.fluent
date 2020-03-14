@@ -43,7 +43,7 @@ jobs:
       - run:
          name: "Pack"
          command: dotnet pack --configuration Release
-      -run:
+      - run:
          name: "show files"
          command: tree
       - run:
