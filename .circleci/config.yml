@@ -9,6 +9,9 @@ jobs:
     executor:
       name: windows/default
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "0b:49:c1:93:d9:99:3a:de:cf:5b:fa:12:e8:43:6a:42"
       - checkout
       - run: dotnet build
       - run: dotnet test --logger "trx" --results-directory "TestResults" --collect:"Code Coverage"
@@ -29,6 +32,9 @@ jobs:
     executor:
       name: windows/default
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "0b:49:c1:93:d9:99:3a:de:cf:5b:fa:12:e8:43:6a:42"
       - checkout
       - run:
           name: "Build Release"
@@ -39,6 +45,9 @@ jobs:
     executor:
       name: windows/default
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "0b:49:c1:93:d9:99:3a:de:cf:5b:fa:12:e8:43:6a:42"
       - checkout
       - run:
          name: "Pack"
