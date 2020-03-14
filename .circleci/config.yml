@@ -32,7 +32,7 @@ jobs:
       - checkout
       - run:
           name: "Build Release"
-          command: dotnet.exe build ${CIRCLE_PROJECT_REPONAME}.csproj --configuration Release --output bin/Release/
+          command: dotnet.exe build ${CIRCLE_PROJECT_REPONAME}/${CIRCLE_PROJECT_REPONAME}.csproj --configuration Release --output bin/Release/
       - store_artifacts:
           path: bin/Release/
           destination: bin/Release/
@@ -44,10 +44,10 @@ jobs:
     steps:
       - run:
          name: "Pack"
-         command: dotnet pack ${CIRCLE_PROJECT_REPONAME}.csproj --configuration Release
+         command: dotnet pack --configuration Release
       - run:
          name: "Publish"
-         command: dotnet nuget push "bin/Release/xor.csharp.extensions.fluent.*.nupkg" --source "github"
+         command: dotnet nuget push "bin/Release/${CIRCLE_PROJECT_REPONAME}.*.nupkg" --source "github"
       - store_artifacts:
          path: bin/Release/${CIRCLE_PROJECT_REPONAME}.*.nupkg
          destination: nupkgs/
