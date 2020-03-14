@@ -42,7 +42,7 @@ jobs:
       - checkout
       - run:
          name: "Pack"
-         command: dotnet pack --configuration Release
+         command: dotnet pack --configuration Release --output nupkgs/
       - run:
          name: "show files"
          command: tree
