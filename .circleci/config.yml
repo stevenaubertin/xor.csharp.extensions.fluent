@@ -44,13 +44,10 @@ jobs:
          name: "Pack"
          command: dotnet pack --configuration Release --output nupkgs/
       - run:
-         name: "show files"
-         command: tree
-      - run:
          name: "Publish"
          command: dotnet nuget push "bin/Release/$CIRCLE_PROJECT_REPONAME.*.nupkg" --source "github"
       - store_artifacts:
-         path: bin/Release/$CIRCLE_PROJECT_REPONAME.*.nupkg
+         path: nupkgs/
          destination: nupkgs/
 
 workflows:
