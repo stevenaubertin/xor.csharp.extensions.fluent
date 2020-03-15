@@ -51,7 +51,7 @@ jobs:
          command: mv nugetconfig nuget.config
       - run:
          name: "Publish"
-         command: dotnet nuget push nupkgs/*.nupkg --source "github"
+         command: dotnet nuget push nupkgs/xor.csharp.extensions.fluent.1.0.0.nupkg --source "github"
       - store_artifacts:
          path: nupkgs/
          destination: nupkgs/
