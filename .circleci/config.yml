@@ -41,7 +41,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "0b:49:c1:93:d9:99:3a:de:cf:5b:fa:12:e8:43:6a:42"
+            - "dd:3a:37:de:f8:ab:a5:91:58:df:bd:bb:05:1d:15:3a"
       - checkout
       - run:
          name: "Pack"
