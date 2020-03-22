@@ -7,7 +7,7 @@
     <packageSourceCredentials>
         <github>
             <add key="Username" value="stevenaubertin" />
-            <add key="ClearTextPassword" value="dd:3a:37:de:f8:ab:a5:91:58:df:bd:bb:05:1d:15:3a" />
+            <add key="ClearTextPassword" value="GITHUB_TOKEN" />
         </github>
     </packageSourceCredentials>
 </configuration>

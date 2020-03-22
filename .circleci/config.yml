@@ -50,6 +50,9 @@ jobs:
          name: "Create rename the nuget.config file to be use as a source"
          command: mv nugetconfig nuget.config
       - run:
+        name: "sed to put the github token into the file safely"
+        comman: sed -i 's/GITHUB_TOKEN/$GITHUB_TOKEN/g'
+      - run:
          name: "Publish"
          command: dotnet nuget push nupkgs/xor.csharp.extensions.fluent.1.0.0.nupkg --source "github"
       - store_artifacts:
