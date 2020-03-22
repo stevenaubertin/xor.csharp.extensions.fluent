@@ -32,7 +32,7 @@ jobs:
       - checkout
       - run:
           name: "Set version"
-          command: $env:app_version = "1.0.$env:CIRCLE_BUILD_NUM"
+          command: $env:app_version = "1.0.0.$env:CIRCLE_BUILD_NUM"
       - run:
           name: "ECHO version"
           command: echo $env:app_version
