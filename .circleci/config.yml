@@ -45,7 +45,7 @@ jobs:
           command: dotnet pack --configuration Release --output nupkgs/
       - run:
           name: "Create the nuget.config file to be use as a source"
-          command: (Get-Content nugetconfig).replace('GITHUB_TOKEN', $GITHUB_TOKEN) | Set-Content nuget.config
+          command: (Get-Content nugetconfig).replace('GITHUB_TOKEN', ${GITHUB_TOKEN}) | Set-Content nuget.config
       - run:
           name: "DEBUG nuget.config"
           command: cat nuget.config
