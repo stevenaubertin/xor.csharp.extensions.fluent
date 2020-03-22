@@ -41,7 +41,7 @@ jobs:
           command: (Get-Content nugetconfig).replace('GITHUB_TOKEN', $env:GITHUB_TOKEN) | Set-Content nuget.config
       - run:
           name: "Publish"
-          command: dotnet nuget push nupkgs/*.nupkg --source "github"
+          command: dotnet nuget push nupkgs/xor.csharp.extensions.fluent.1.0.0.$env:CIRCLE_BUILD_NUM.nupkg --source "github"
       - store_artifacts:
           path: nupkgs/
           destination: nupkgs/
