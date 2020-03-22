@@ -39,9 +39,6 @@ jobs:
     executor:
       name: windows/default
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "dd:3a:37:de:f8:ab:a5:91:58:df:bd:bb:05:1d:15:3a"
       - checkout
       - run:
           name: "Pack"
@@ -52,6 +49,9 @@ jobs:
       - run:
           name: "sed to put the github token into the file safely"
           command: sed -i 's/GITHUB_TOKEN/$GITHUB_TOKEN/g' nuget.config
+      - run:
+          name: "DEBUG SED"
+          command: cat nuget.config
       - run:
           name: "Publish"
           command: dotnet nuget push nupkgs/xor.csharp.extensions.fluent.1.0.0.nupkg --source "github"
