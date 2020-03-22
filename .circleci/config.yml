@@ -32,22 +32,22 @@ jobs:
       - checkout
       - run:
           name: "Set version"
-          command: $app_version = "1.0.$CIRCLE_BUILD_NUM"
+          command: $env:$app_version = "1.0.$CIRCLE_BUILD_NUM"
       - run:
           name: "ECHO version"
-          command: echo $app_version
+          command: echo $env:$app_version
       - run:
           name: "Build Release"
-          command: dotnet.exe build p:Version=$app_version --configuration Release --output bin/Release/
+          command: dotnet.exe build p:Version=$env:$app_version --configuration Release --output bin/Release/
       - run:
           name: "Pack"
-          command: dotnet pack -p:PackageVersion=$app_version --configuration Release --output nupkgs/
+          command: dotnet pack -p:PackageVersion=$env:$app_version --configuration Release --output nupkgs/
       - run:
           name: "Create the nuget.config file to be use as a source"
           command: (Get-Content nugetconfig).replace('GITHUB_TOKEN', $env:GITHUB_TOKEN) | Set-Content nuget.config
       - run:
           name: "Publish"
-          command: dotnet nuget push nupkgs/xor.csharp.extensions.fluent.$app_version.nupkg --source "github"
+          command: dotnet nuget push nupkgs/xor.csharp.extensions.fluent.$env:$app_version.nupkg --source "github"
       - store_artifacts:
           path: nupkgs/
           destination: nupkgs/
