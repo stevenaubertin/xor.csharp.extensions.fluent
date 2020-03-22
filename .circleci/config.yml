@@ -44,13 +44,10 @@ jobs:
           name: "Pack"
           command: dotnet pack --configuration Release --output nupkgs/
       - run:
-          name: "Create rename the nuget.config file to be use as a source"
-          command: mv nugetconfig nuget.config
+          name: "Create the nuget.config file to be use as a source"
+          command: echo "<?xml version=\"1.0\" encoding=\"utf-8\"?><configuration><packageSources><clear /><add key=\"github\" value=\"https://nuget.pkg.github.com/stevenaubertin/index.json\" /></packageSources><packageSourceCredentials><github><add key=\"Username\" value=\"stevenaubertin\" /><add key=\"ClearTextPassword\" value=\"$GITHUB_TOKEN\" /></github></packageSourceCredentials></configuration>"" > nuget.config
       - run:
-          name: "sed to put the github token into the file safely"
-          command: sed -i 's/GITHUB_TOKEN/$GITHUB_TOKEN/g' nuget.config
-      - run:
-          name: "DEBUG SED"
+          name: "DEBUG nuget.config"
           command: cat nuget.config
       - run:
           name: "Publish"
