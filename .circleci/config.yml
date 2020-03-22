@@ -38,7 +38,7 @@ jobs:
           command: echo $env:app_version
       - run:
           name: "Build Release"
-          command: dotnet.exe build p:Version=$env:app_version --configuration Release --output bin/Release/
+          command: dotnet build -p:Version=$env:app_version --configuration Release --output bin/Release/
       - run:
           name: "Pack"
           command: dotnet pack -p:PackageVersion=$env:app_version --configuration Release --output nupkgs/
