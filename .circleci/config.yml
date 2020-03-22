@@ -38,10 +38,10 @@ jobs:
           command: echo $app_version
       - run:
           name: "Build Release"
-          command: dotnet.exe build p:Version:$app_version --configuration Release --output bin/Release/
+          command: dotnet.exe build p:Version=$app_version --configuration Release --output bin/Release/
       - run:
           name: "Pack"
-          command: dotnet pack -p:$app_version --configuration Release --output nupkgs/
+          command: dotnet pack -p:PackageVersion=$app_version --configuration Release --output nupkgs/
       - run:
           name: "Create the nuget.config file to be use as a source"
           command: (Get-Content nugetconfig).replace('GITHUB_TOKEN', $env:GITHUB_TOKEN) | Set-Content nuget.config
